@@ -16,5 +16,11 @@ Write a text analyzer that reads a file and outputs statistics about that file. 
 * Sort the output with .entrySet() Method, comparing by value.
 
 ### Input and Output:
-* The Raven by Edgar Allan Poe:                                               Output
-![Input](./images/Input.png)    ![Output](./images/output.png)
+Input:
+* The Raven by Edgar Allan Poe:
+
+![Input](./Images/Input.png)
+
+Output:
+
+![Output](./Images/Output.png "Output")
