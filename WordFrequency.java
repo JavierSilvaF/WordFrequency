@@ -4,9 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-
 public class WordFrequency {
-
     public static void main(String args[]) throws FileNotFoundException {
  
         //creating File instance to reference text file in Java
@@ -47,7 +45,5 @@ public class WordFrequency {
         .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
         .limit(20)
         .forEach(System.out::println);
-        
-
     }//main
 }//class
