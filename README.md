@@ -23,4 +23,4 @@ Input:
 
 Output:
 
-![Output](./Images/Output.png "Output")
+![Output](./Images/Output.png "Output") ![Output2](./Images/Output2.png "OutputGUI")
