@@ -72,7 +72,7 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(new Group());
         stage.getIcons().add(new Image("file:icon.png"));
-        stage.setTitle("Valencia College - Javier Silva");
+        stage.setTitle("Valencia College");
         stage.setWidth(300);
         stage.setHeight(500);
 
