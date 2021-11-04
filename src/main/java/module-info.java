@@ -9,6 +9,7 @@ module com.example.wftest {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires org.junit.jupiter.api;
 
     opens com.example.wftest to javafx.fxml;
     exports com.example.wftest;

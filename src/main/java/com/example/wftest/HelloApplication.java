@@ -1,12 +1,8 @@
 package com.example.wftest;
 
 import javafx.application.Application;
-import javafx.beans.Observable;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,7 +15,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -32,20 +27,10 @@ public class HelloApplication extends Application {
     }//main
 
     public void start(Stage stage) throws FileNotFoundException {
-        //creating File instance to reference text file in Java
-        File text = new File("poem.txt");
-        String File = "The poem is: ";
 
-        //Creating Scanner instance to read File in Java
-        Scanner scnr = new Scanner(text);
-        //Reading each line of the file using Scanner class and adding it to a string
-        while(scnr.hasNextLine()){
-            String line = scnr.nextLine();
-            File = File.concat(" " + line);
-        }
-
-        //Deleting all special characters as they could mess up the HashMap
-        String fileNoChars = File.replaceAll("[^a-zA-Z0-9]", " ");
+        String caughtFile = getFile();
+        //Sending the file for cleanup
+        String fileNoChars = cleanup(caughtFile);
         //Deleting all the whitespace created by the previous replace all.
         String cleanFile = fileNoChars.replaceAll("^ +| +$|( )+", "$1");
         //Splitting the string into an array with each word
@@ -80,7 +65,6 @@ public class HelloApplication extends Application {
         ObservableList<Populate> populatedTable = FXCollections.observableArrayList();
         int value = 0;
         Integer i = 0;
-
 
         for (Map.Entry<String, Integer> entry : UnsortedMap.entrySet()) {
             System.out.println("[" + entry.getKey() + ", " + entry.getValue() + "]");
@@ -119,4 +103,27 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public static String getFile() throws FileNotFoundException{
+        //creating File instance to reference text file in Java
+        File text = new File("poem.txt");
+        String File = "The poem is: ";
+
+        //Creating Scanner instance to read File in Java
+        Scanner scnr = new Scanner(text);
+        //Reading each line of the file using Scanner class and adding it to a string
+        while(scnr.hasNextLine()){
+            String line = scnr.nextLine();
+            File = File.concat(" " + line);
+        }
+        return File;
+    }
+
+    public static String cleanup(String DirtyString) {
+        //Deleting all special characters as they could mess up the TreeMap
+        String fileNoChars = DirtyString.replaceAll("[^a-zA-Z0-9]", " ");
+
+        return fileNoChars;
+    };
+
 }//class
