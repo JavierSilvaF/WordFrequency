@@ -23,4 +23,4 @@ Input:
 
 Output:
 
-![Output](./Images/Output.png "Output") <img src="Output2.png" alt="OutputGUI" width="198"/>
+![Output](./Images/Output.png "Output") <img src="./Images/Output.png" alt="OutputGUI" width="198"/>
