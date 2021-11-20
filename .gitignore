@@ -1,3 +1,5 @@
 .idea
 pom.xml
 WFTEST.iml
+.settings
+.gitignore
