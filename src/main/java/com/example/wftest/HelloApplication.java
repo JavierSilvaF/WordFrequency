@@ -19,13 +19,44 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+
+/**
+ *  Write a text analyzer that reads a file and outputs statistics about that file.
+ *  It should output the word frequencies of all words in the file, sorted by the most frequently used word.
+ *  The output should be a set of pairs, each pair containing a word and how many times it occurred in the file. <br>
+ *  <br>
+ *  <b>Sample Output:</b>
+ *  <b>Command Line:</b><br>
+ *  <img src="https://i.imgur.com/eiZMzFE.png" alt="Command Line Output"> <br>
+ *  <br>
+ *  <b>GUI:</b><br>
+ *  <img src="https://i.imgur.com/1Wsxvnj.png" alt="Interface Output"><br>
+ *
+ * @author Javier Silva
+ * @version 1.0.0
+ *
+ */
+
 public class HelloApplication extends Application {
-    private TableView table = new TableView();
+
+    /**
+     * Starting point of the Word Frequency program.
+     *
+     * @param args Stores Java command line arguments
+     * @throws FileNotFoundException Exception thrown when the poem file is not found
+     */
 
     public static void main(String args[]) throws FileNotFoundException {
         launch(args);
     }//main
 
+
+    /**
+     * This method creates the TableView containing the word frequency of the input text.
+     *
+     * @param stage top level JavaFX container.
+     * @throws FileNotFoundException Exception thrown when the poem file is not found
+     */
     public void start(Stage stage) throws FileNotFoundException {
 
         String caughtFile = getFile();
@@ -73,6 +104,8 @@ public class HelloApplication extends Application {
             boolean newWord = populatedTable.add(new Populate(entry.getKey(), value));
         }
 
+        TableView table = new TableView();
+
         final Label label = new Label("Word Frequency");
         label.setFont(new Font("Arial", 20));
 
@@ -104,6 +137,13 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    /**
+     * This method retrieves the poem from a .txt file in the directory.
+     *
+     * @return File - String containing the poem.
+     * @throws FileNotFoundException Exception thrown when the poem file is not found
+     */
+
     public static String getFile() throws FileNotFoundException{
         //creating File instance to reference text file in Java
         File text = new File("poem.txt");
@@ -118,6 +158,13 @@ public class HelloApplication extends Application {
         }
         return File;
     }
+
+    /**
+     * This method receives a string which contains the poem and cleans all special characters, which could mess up the word counting process.
+     *
+     * @param DirtyString String containing the poem.
+     * @return fileNoChars - String with no special characters.
+     */
 
     public static String cleanup(String DirtyString) {
         //Deleting all special characters as they could mess up the TreeMap

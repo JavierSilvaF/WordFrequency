@@ -1,15 +1,16 @@
 package com.example.wftest;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class HelloApplicationTests {
+    /**
+     *  Test that the cleaned string doesn't contain any special characters.
+     *
+     */
+
     @Test
     @DisplayName("Testing that the cleaned string doesn't contain any special chars that can mess up the word count")
     void checkStringCharacters() {
@@ -17,6 +18,10 @@ class HelloApplicationTests {
         Assertions.assertTrue(!(cleanString.contains("[^a-zA-Z0-9]")));
     }
 
+    /**
+     *  Test that verifies that the file contains text.
+     *
+     */
     @Test
     @DisplayName("Testing that the file is not null")
     void checkFile() {
