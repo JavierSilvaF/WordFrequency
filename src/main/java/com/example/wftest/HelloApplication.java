@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -57,7 +61,7 @@ public class HelloApplication extends Application {
      * @param stage top level JavaFX container.
      * @throws FileNotFoundException Exception thrown when the poem file is not found
      */
-    public void start(Stage stage) throws FileNotFoundException {
+    public void start(Stage stage) throws FileNotFoundException, ClassNotFoundException, SQLException {
 
         String caughtFile = getFile();
         //Sending the file for cleanup
@@ -67,10 +71,24 @@ public class HelloApplication extends Application {
         //Splitting the string into an array with each word
         String splitString[]=cleanFile.split(" ");
 
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = null;
+        Statement stmt = null;
+        conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/wordoccurrences?useSSL=false&allowPublicKeyRetrieval=true", "root", "j15589170");
+
         //Counting the word frequency
         Map<String,Integer> UnsortedMap =new TreeMap<>();
         for(int i=0;i<splitString.length;i++)
         {
+            //Insert into MySQL Database, will catch if there's an error or the word already exists in the DB!
+            try {
+                stmt = (Statement) conn.createStatement();
+                String query = "INSERT INTO wordOccurrences.word (word) values('" + splitString[i] + "');";
+                stmt.executeUpdate(query);
+            }catch (SQLException exception){
+                exception.printStackTrace();
+            }
+
             //If the word is in the TreeMap, then add one to its value
             if(UnsortedMap.containsKey(splitString[i]))
             {   UnsortedMap.put(splitString[i], UnsortedMap.get(splitString[i])+1);}
